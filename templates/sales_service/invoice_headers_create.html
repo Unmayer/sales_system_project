@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Создание товарной накладной{% endblock title %}
+{% block content %}
+    <form method="post">
+    {% for hidden_field in form.hidden_fields %}
+        {{ hidden_field.errors }}
+        {{ hidden_field }}
+    {% endfor %}
+
+        {% csrf_token %}
+        <ul>
+        {% for field in form %}
+            {{ field.errors }}
+            <li>{{ field.label_tag }} {{ field }}</li>
+        {% endfor %}
+        </ul>
+    <button type="submit" value="Добавить товарную накладную">Создать</button>
+    <a href="{% url 'sales_service:home' %}" role="button">Отмена</a>
+    </form>
+{% endblock content %}

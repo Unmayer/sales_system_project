@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Список товарных накладных{% endblock title %}
+
+{% block content %}
+    <h3>Товарные накладные</h3>
+    <ul>
+    {% for header in headers %}
+        <li><p>Товарная накладная №{{ header.number }} от {{ header.date }} </p>
+            <a href="{{ header.get_absolute_url }}">Подробнее</a></li>
+    {% endfor %}
+    </ul>
+{% endblock content %}
