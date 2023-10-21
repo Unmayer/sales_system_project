@@ -1,1 +1,21 @@
-<h1>AAYAYA</h1>
+{% extends 'base.html' %}
+{% block title %}Просмотр товарной накладной{% endblock title %}
+{% block content %}
+<h1>Поля товарной накладной</h1>
+<p>Номер товарной накладной: {{ header.number }}</p>
+<p>Дата составления {{ header.date }}</p>
+<p>Статус документа {{ header.is_paid }}</p>
+<p>Плательщик {{ header.payer }}</p>
+<p>Поставщик {{ header.supplier }}</p>
+<hr>
+<h3>Перечень Товаров</h3>
+{% for product in header.body.all %}
+<p> Наименование: <strong>{{ product.product.name }}</strong></p>
+    <p> Единица измерения: {{ product.uom }}</p>
+    <p> Количество: {{ product.count }}</p>
+    <p> Цена: {{ product.product.price }}</p>
+    <p> Сумма: {% widthratio  product.count 1 product.product.price as sum %} {{ sum }}</p>
+    <hr>
+{% endfor %}
+<p>Общая сумма: {{ total }}</p>
+{% endblock content %}

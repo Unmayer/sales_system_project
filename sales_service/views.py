@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .models import InvoiceHeader
@@ -21,6 +21,7 @@ class InvoiceHeadersListView(ListView):
 class InvoiceHeadersDetailView(DetailView):
     model = InvoiceHeader
     template_name = 'sales_service/invoice_headers_detail.html'
+    context_object_name = 'header'
 
 
 class InvoiceHeadersCreateView(CreateView):
