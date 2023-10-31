@@ -8,3 +8,4 @@ class InvoiceHeadersForm(ModelForm):
     class Meta:
         model = InvoiceHeader
         fields = ['number', 'date', 'is_paid', 'payer', 'supplier']
+

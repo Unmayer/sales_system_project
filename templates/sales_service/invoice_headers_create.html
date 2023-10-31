@@ -1,20 +1,11 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block title %}Создание товарной накладной{% endblock title %}
 {% block content %}
+<h1 class="text-capitalize text-center mx-10 bg-secondary text-black"> Создание товарной накладной </h1>
     <form method="post">
-    {% for hidden_field in form.hidden_fields %}
-        {{ hidden_field.errors }}
-        {{ hidden_field }}
-    {% endfor %}
-
-        {% csrf_token %}
-        <ul>
-        {% for field in form %}
-            {{ field.errors }}
-            <li>{{ field.label_tag }} {{ field }}</li>
-        {% endfor %}
-        </ul>
-    <button type="submit" value="Добавить товарную накладную">Создать</button>
+    {% crispy form %}
+    <button type="submit" class="btn btn-primary">Создать</button>
     <a href="{% url 'sales_service:home' %}" role="button">Отмена</a>
     </form>
 {% endblock content %}

@@ -1,21 +1,37 @@
 {% extends 'base.html' %}
-{% block title %}Просмотр товарной накладной{% endblock title %}
+{% block title %}Товарная накладная №{{ header.number }} от {{ header.date }}{% endblock title %}
 {% block content %}
-<h1>Поля товарной накладной</h1>
+<h1>Товарная накладная №{{ header.number }} от {{ header.date }}</h1>
 <p>Номер товарной накладной: {{ header.number }}</p>
 <p>Дата составления {{ header.date }}</p>
-<p>Статус документа {{ header.is_paid }}</p>
+{% if header.is_paid %}
+<p>Статус документа: Оплачен </p>
+{% else %}
+<p>Статус документа: Не оплачен </p>
+{% endif %}
 <p>Плательщик {{ header.payer }}</p>
 <p>Поставщик {{ header.supplier }}</p>
 <hr>
-<h3>Перечень Товаров</h3>
-{% for product in header.body.all %}
-<p> Наименование: <strong>{{ product.product.name }}</strong></p>
-    <p> Единица измерения: {{ product.uom }}</p>
-    <p> Количество: {{ product.count }}</p>
-    <p> Цена: {{ product.product.price }}</p>
-    <p> Сумма: {% widthratio  product.count 1 product.product.price as sum %} {{ sum }}</p>
-    <hr>
-{% endfor %}
-<p>Общая сумма: {{ total }}</p>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Наименование</th>
+      <th scope="col">Единица измерения</th>
+      <th scope="col">Количество</th>
+      <th scope="col">Цена</th>
+      <th scope="col">Сумма</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for product in header.body.all %}
+    <tr>
+      <td><strong>{{ product.product.name }}</strong></td>
+      <td>{{ product.uom }}</td>
+      <td>{{ product.count }}</td>
+      <td>{{ product.product.price }}</td>
+      <td>{% widthratio  product.count 1 product.product.price as sum %} {{ sum }}</td>
+    </tr>
+        {% endfor %}
+</table>
+
 {% endblock content %}
