@@ -30,9 +30,9 @@
                        data-bs-toggle="dropdown" aria-expanded="false">Справочники</a>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdown03">
-                        <li><a class="dropdown-item" href="#">Товары</a></li>
-                        <li><a class="dropdown-item" href="#">Плательщики</a></li>
-                        <li><a class="dropdown-item" href="#">Поставщики</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sales_service:products-list' %}">Товары</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sales_service:payers-list' %}">Плательщики</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sales_service:suppliers-list' %}">Поставщики</a></li>
                     </ul>
                 </li>
             </ul>
@@ -43,10 +43,6 @@
 
 {% block content %}
 {% endblock %}
-
-	<div id="footer">
-		<p>&copy; 2023 Частичное или полное копирование информации с данного сайта для распространения на других ресурсах, в том числе и бумажных, строго запрещено.</p>
-	</div>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

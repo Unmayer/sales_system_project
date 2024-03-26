@@ -1,12 +1,45 @@
 {% extends 'base.html' %}
+
 {% block title %}Список товарных накладных{% endblock title %}
 
 {% block content %}
-    <h3>Товарные накладные</h3>
-    <ul>
+    <style>
+        .h3 {
+            color: #333;
+            font-size: 24px;
+        }
+
+        .ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #007bff;
+            border-radius: 3px;
+        }
+
+        .a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+
+    <h3 class="h3">Товарные накладные</h3>
+    <ul class="ul">
     {% for header in headers %}
-        <li><p>Товарная накладная №{{ header.number }} от {{ header.date }} </p>
-            <a href="{{ header.get_absolute_url }}">Подробнее</a></li>
+        <li class="li"><p>Товарная накладная №{{ header.number }} от {{ header.date }}</p>
+            <a class="a" href="{{ header.get_absolute_url }}">Подробнее</a></li>
     {% endfor %}
     </ul>
 {% endblock content %}

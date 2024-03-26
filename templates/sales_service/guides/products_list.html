@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Список товаров{% endblock title %}
+
+{% block content %}
+    <p><h3>Товары</h3> <h5><a href="{% url 'sales_service:products-add' %}">Добавить</a></h5></p>
+    <ul>
+    {% for product in products %}
+        <li><p>Товар {{ product.name }}</p>
+            <a href="{{ product.get_absolute_url }}">Подробнее</a></li>
+    {% endfor %}
+    </ul>
+{% endblock content %}

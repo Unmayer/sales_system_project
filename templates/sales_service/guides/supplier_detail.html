@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}{{ supplier.name }}{% endblock title %}
+{% block content %}
+<h1>Поставщик {{ supplier.name }}</h1>
+<p>Адрес: {{ supplier.address }}</p>
+<p>Телефон {{ supplier.phone }}</p>
+<a href="{% url 'sales_service:suppliers-list' %}">Назад</a></li>
+<a href="{% url 'sales_service:suppliers-update'  supplier.slug %}">Обновить</a></li>
+<a href="{% url 'sales_service:suppliers-delete' supplier.slug %}" role="button">Удалить</a>
+{% endblock content %}

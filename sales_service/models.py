@@ -1,3 +1,4 @@
+from unidecode import unidecode
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
@@ -28,6 +29,14 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.name))
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("sales_service:products-detail", kwargs={'slug': self.slug})
+
 
 class Payer(models.Model):
     name = models.CharField(max_length=150, verbose_name="Наименование плательщика")
@@ -38,6 +47,14 @@ class Payer(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("sales_service:payers-detail", kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.name))
+        super().save(*args, **kwargs)
+
 
 class Supplier(models.Model):
     name = models.CharField(max_length=150, verbose_name="Наименование поставщика")
@@ -47,6 +64,14 @@ class Supplier(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("sales_service:suppliers-detail", kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.name))
+        super().save(*args, **kwargs)
 
 
 class InvoiceBody(models.Model):

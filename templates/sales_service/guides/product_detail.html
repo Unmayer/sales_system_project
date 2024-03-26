@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{ product.name }}{% endblock title %}
+{% block content %}
+<h1>Товар {{ product.name }}</h1>
+<p>Описание: {{ product.description }}</p>
+<p>Цена {{ product.price }}</p>
+<p>В наличии {{ product.available }}</p>
+<p>Категория {{ product.category }}</p>
+<a href="{% url 'sales_service:products-list' %}">Назад</a></li>
+<a href="{% url 'sales_service:products-update'  product.slug %}">Обновить</a></li>
+<a href="{% url 'sales_service:products-delete' product.slug %}" role="button">Удалить</a>
+{% endblock content %}

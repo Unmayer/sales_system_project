@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Обновить данные о плательщике{% endblock title %}
+{% block content %}
+<h1 class="text-capitalize text-center mx-10 text-black">Обновить данные о плательщике</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Обновить</button>
+    <a href="{% url 'sales_service:payers-detail' slug %}" role="button">Отмена</a>
+</form>
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}{{ payer.name }}{% endblock title %}
+{% block content %}
+<h1>Плательщик {{ payer.name }}</h1>
+<p>Адрес: {{ payer.address }}</p>
+<p>Телефон {{ payer.phone }}</p>
+<a href="{% url 'sales_service:payers-list' %}">Назад</a></li>
+<a href="{% url 'sales_service:payers-update'  payer.slug %}">Обновить</a></li>
+<a href="{% url 'sales_service:payers-delete' payer.slug %}" role="button">Удалить</a>
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Список поставщиков{% endblock title %}
+
+{% block content %}
+    <p><h3>Поставщики</h3> <h5><a href="{% url 'sales_service:suppliers-add' %}">Добавить</a></h5></p>
+    <ul>
+    {% for supplier in suppliers %}
+        <li><p>Поставщик {{ supplier.name }}</p>
+            <a href="{{ supplier.get_absolute_url }}">Подробнее</a></li>
+    {% endfor %}
+    </ul>
+{% endblock content %}

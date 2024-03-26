@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Создание товара{% endblock title %}
+{% block content %}
+<h1 class="text-capitalize text-center mx-10 text-black"> Создание товара</h1>
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Создать</button>
+    <a href="{% url 'sales_service:products-list' %}" role="button">Отмена</a>
+    </form>
+{% endblock content %}

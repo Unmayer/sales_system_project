@@ -1,11 +1,68 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+
 {% block title %}Создание товарной накладной{% endblock title %}
+
 {% block content %}
-<h1 class="text-capitalize text-center mx-10 bg-secondary text-black"> Создание товарной накладной </h1>
-    <form method="post">
-    {% crispy form %}
-    <button type="submit" class="btn btn-primary">Создать</button>
-    <a href="{% url 'sales_service:home' %}" role="button">Отмена</a>
-    </form>
-{% endblock content %}
+    <h1 class="text-capitalize text-center mx-10 text-black"> Создание товарной накладной </h1>
+    <br>
+    <section class="hero is-fullheight">
+        <div class="container">
+            <div class="card white-ter">
+                <div class="hero-body">
+                    <form class="" method="POST" action="">{% csrf_token %}
+                        <div class="columns is-centered">
+                            <div class="column is-one-third">
+                                Номер Товарной накладной: {{ form.number }}
+                            </div>
+                            <br>
+                            <div class="column is-one-third">
+                                Дата составления: {{ form.date }}
+                            </div>
+                            <br>
+                            <div class="column is-one-third">
+                                Статус документа: {{ form.is_paid }}
+                            </div>
+                            <br>
+                            <div class="column is-one-third">
+                                Плательщик: {{ form.payer }}
+                            </div>
+                            <br>
+                            <div class="column is-one-third">
+                                Поставщик: {{ form.supplier }}
+                            </div>
+                            <br>
+                        </div>
+                        <table class="table is-fullwidth is-bordered is-hoverable is-striped">
+                            <thead>
+                                <tr>
+                                    <th>Продукт</th>
+                                    <th>Количество</th>
+                                    <th>Единица измерения</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{ formset.management_form }}
+                                {% for form in formset %}
+                                    <tr>
+                                        <td>{{form.product}}</td>
+                                        <td>{{form.count}}</td>
+                                        <td>{{form.uom}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="row spacer">
+                            <div class="col-4 offset-2">
+                                <button type="submit" class="button btn btn-block is-info is-half">Создать</button>
+                            </div>
+                            <div class="col-4 offset-2">
+                               <a href="{% url 'sales_service:home' %}">Отмена</a></li>
+                            </div>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Список плательщиков{% endblock title %}
+
+{% block content %}
+    <p><h3>Плательщики</h3> <h5><a href="{% url 'sales_service:payers-add' %}">Добавить</a></h5></p>
+    <ul>
+    {% for payer in payers %}
+        <li><p>Плательщик {{ payer.name }}</p>
+            <a href="{{ payer.get_absolute_url }}">Подробнее</a></li>
+    {% endfor %}
+    </ul>
+{% endblock content %}
